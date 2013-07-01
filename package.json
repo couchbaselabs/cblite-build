@@ -1,0 +1,16 @@
+{
+  "name": "build-mobile",
+  "version": "0.0.0",
+  "description": "Build Verification for Couchbase Lite, Sync Gateway, and friends.",
+  "repository": "https://github.com/couchbaselabs/mobile-testing.git",
+  "keywords": [
+    "test",
+    "Couchbase",
+    "mobile",
+    "sync"
+  ],
+  "dependencies" : ["tap"],
+  "scripts": {},
+  "author": "Couchbase, Inc.",
+  "license": "Apache 2.0"
+}
