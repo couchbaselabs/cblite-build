@@ -46,7 +46,7 @@ sleep 60
 
 # start a sync gateway
 killall sync_gateway
-/Users/couchbase/sync_gateway/bin/sync_gateway /Users/couchbase/buildbox/admin_party.json &
+/Users/couchbase/buildbox/sync_gateway/bin/sync_gateway /Users/couchbase/buildbox/cblite-tests/config/admin_party.json &
 
 # run unit tests
 #./run_android_unit_tests.sh  BLOCKED: http://github.com/couchbase/couchbase-lite-android/issues/35

@@ -1,7 +1,7 @@
 var builder = require("./builder"),
     test = require("tap").test;
 
-LiteServRepo = "/Users/couchbase/couchbase-lite-ios/";
+LiteServRepo = "/Users/couchbase/buildbox/couchbase-lite-ios/";
 
 test("can build liteserv", function(t) {
   builder.build_liteserv(LiteServRepo, function(sucess){
