@@ -3,7 +3,7 @@ var path = require("path"),
 
 
 module.exports.build_gateway = function(path, cb){
-    cmd = "cd "+path+" && ./build.sh"
+    cmd = "cd "+path+" && ./clean.sh && ./build.sh"
     exec(cmd,
         function(error, stdout, stderr){
             status = false
