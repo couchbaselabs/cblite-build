@@ -8,7 +8,7 @@ TAP_RESULTS=/tmp/tap.out
 TAP_COUNT=1
 TAP_PASS=0
 TAP_FAIL=0
-NUM_TAP_TESTS=4 # should match number of calls to tap()
+NUM_TAP_TESTS=2 # should match number of calls to tap()
 
 echo "1.."$NUM_TAP_TESTS > $TAP_RESULTS
 
@@ -49,12 +49,14 @@ killall sync_gateway
 /Users/couchbase/buildbox/sync_gateway/bin/sync_gateway /Users/couchbase/buildbox/cblite-tests/config/admin_party.json &
 
 # run unit tests
-#./run_android_unit_tests.sh  BLOCKED: http://github.com/couchbase/couchbase-lite-android/issues/35
-./gradlew :CBLite:connectedInstrumentTest  2>&1 | tee  $EFILE
-tap "cblite connected_instrument_test"
+./run_android_unit_tests.sh 2>&1 | tee  $EFILE
+tap "unit tests"
+
+#./gradlew :CBLite:connectedInstrumentTest  2>&1 | tee  $EFILE
+#tap "cblite connected_instrument_test"
 
 #./gradlew :CBLiteEktorp:connectedInstrumentTest | tee $EFILE
 #tap "ecktorp connected_instrument_test"
 
-./gradlew :CBLiteJavascript:connectedInstrumentTest 2>&1| tee $EFILE
-tap "cbjs connected_instrument_test"
+#./gradlew :CBLiteJavascript:connectedInstrumentTest 2>&1| tee $EFILE
+#tap "cbjs connected_instrument_test"
