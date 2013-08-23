@@ -20,7 +20,7 @@ module.exports.build_gateway = function(path, cb){
     });
 };
 
-module.exports.build_liteserv = function(path, cb){
+module.exports.build_cblios = function(path, cb){
     cmd = "cd "+path+" && xcodebuild -target \"CBL iOS\""
     exec(cmd,
         function(error, stdout, stderr){
@@ -38,7 +38,7 @@ module.exports.build_liteserv = function(path, cb){
         });
 };
 
-module.exports.build_liteserv = function(path, cb){
+module.exports.build_listener = function(path, cb){
     cmd = "cd "+path+" && xcodebuild -target \"CBL Listener iOS\""
     exec(cmd,
         function(error, stdout, stderr){
@@ -74,7 +74,7 @@ module.exports.build_liteserv = function(path, cb){
         });
 };
 
-module.exports.build_liteserv = function(path, cb){
+module.exports.build_viewcompiler = function(path, cb){
     cmd = "cd "+path+" && xcodebuild -target CBLJSViewCompiler"
     exec(cmd,
         function(error, stdout, stderr){
