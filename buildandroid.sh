@@ -27,7 +27,8 @@ tap(){
 # pull latest
 cd /Users/couchbase/buildbox/couchbase-lite-android/CouchbaseLiteProject
 git pull
-
+cd CouchbaseLiteProject
+git submodule init && git submodule update
 
 
 # build sdk
