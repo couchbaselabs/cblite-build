@@ -1,94 +1,47 @@
 var path = require("path"),
-    exec = require('child_process').exec;
+    spawn = require('child_process').spawn;
 
+
+function runStuff(test, cmd, cb) {
+    var status = false,
+        proc = spawn(cmd);
+
+    proc.stdout.setEncoding('utf8');
+    proc.stdout.on("data", function(data) {
+        if (data.match(/^Success.*/)) {
+            status = true
+        }
+    })
+    proc.on("close", function(code){
+        if (code !== 0) {
+            status = false
+        }
+        cb(status)
+    })
+}
 
 module.exports.build_gateway = function(path, cb){
-    cmd = "cd "+path+" && ./clean.sh && ./build.sh"
-    exec(cmd,
-        function(error, stdout, stderr){
-            status = false
-            if (error === null){
-                console.log(stdout);
-                m = stdout.match(/^Success.*/);
-                    if (m!==null){
-                        status = true;
-                    }
-            } else{
-                console.log(error);
-            }
-            cb(status);
-    });
+    var cmd = "cd "+path+" && ./clean.sh && ./build.sh"
+    runStuff(/^Success.*/, cmd, cb)
 };
 
 module.exports.build_cblios = function(path, cb){
-    cmd = "cd "+path+" && xcodebuild -target \"CBL iOS\""
-    exec(cmd,
-        function(error, stdout, stderr){
-            status = false
-            if (error === null){
-                console.log(stdout);
-                m = stdout.match(/.*BUILD SUCCEEDED.*/);
-                if (m!==null){
-                    status = true;
-                }
-            } else{
-                console.log(error);
-            }
-            cb(status);
-        });
+    var cmd = "cd "+path+" && xcodebuild -target \"CBL iOS\""
+    runStuff(/.*BUILD SUCCEEDED.*/, cmd, cb)
 };
 
 module.exports.build_listener = function(path, cb){
-    cmd = "cd "+path+" && xcodebuild -target \"CBL Listener iOS\""
-    exec(cmd,
-        function(error, stdout, stderr){
-            status = false
-            if (error === null){
-                console.log(stdout);
-                m = stdout.match(/.*BUILD SUCCEEDED.*/);
-                if (m!==null){
-                    status = true;
-                }
-            } else{
-                console.log(error);
-            }
-            cb(status);
-        });
+    var cmd = "cd "+path+" && xcodebuild -target \"CBL Listener iOS\""
+    runStuff(/.*BUILD SUCCEEDED.*/, cmd, cb)
 };
 
 module.exports.build_liteserv = function(path, cb){
-    cmd = "cd "+path+" && xcodebuild -target LiteServ"
-    exec(cmd,
-        function(error, stdout, stderr){
-            status = false
-            if (error === null){
-                console.log(stdout);
-                m = stdout.match(/.*BUILD SUCCEEDED.*/);
-                if (m!==null){
-                    status = true;
-                }
-            } else{
-                console.log(error);
-            }
-            cb(status);
-        });
+    var cmd = "cd "+path+" && xcodebuild -target LiteServ"
+    runStuff(/.*BUILD SUCCEEDED.*/, cmd, cb)
 };
 
 module.exports.build_viewcompiler = function(path, cb){
     cmd = "cd "+path+" && xcodebuild -target CBLJSViewCompiler"
-    exec(cmd,
-        function(error, stdout, stderr){
-            status = false
-            if (error === null){
-                console.log(stdout);
-                m = stdout.match(/.*BUILD SUCCEEDED.*/);
-                if (m!==null){
-                    status = true;
-                }
-            } else{
-                console.log(error);
-            }
-            cb(status);
-        });
+    runStuff(/.*BUILD SUCCEEDED.*/, cmd, cb)
 };
 
