@@ -4,11 +4,12 @@ var path = require("path"),
 
 function runStuff(test, cmd, cb) {
     var status = false,
-        proc = spawn(cmd);
+        proc = spawn('/bin/sh',['-c',cmd]);
 
     proc.stdout.setEncoding('utf8');
     proc.stdout.on("data", function(data) {
-        if (data.match(/^Success.*/)) {
+        // console.log(data)
+        if (data.match(test)) {
             status = true
         }
     })
@@ -19,6 +20,7 @@ function runStuff(test, cmd, cb) {
     })
     proc.on("close", function(code){
         if (code !== 0) {
+            console.log('exit', code)
             status = false
         }
         cb(status)
@@ -50,3 +52,14 @@ module.exports.build_viewcompiler = function(path, cb){
     runStuff(/.*BUILD SUCCEEDED.*/, cmd, cb)
 };
 
+
+ function test_spawn() {
+    cmd = "cd ~/tmp && ls"
+    runStuff(/walrus/, cmd, function(ok){
+        console.log("test ok", ok)
+    })
+}
+
+if (require.main === module) {
+    test_spawn();
+}
