@@ -12,6 +12,11 @@ function runStuff(test, cmd, cb) {
             status = true
         }
     })
+    proc.on("error", function(err){
+        console.log("error", err)
+        status = false
+        cb(false)
+    })
     proc.on("close", function(code){
         if (code !== 0) {
             status = false
