@@ -12,8 +12,7 @@ switch (CMD_ARGS[0])
     default:          console.log('use:  node buildios.js  --iosrepo .../path/repo/cloned/to');
                       return false;
     }
-if (ops.iosrepo) { IOSRepo = ops.iosrepo; } 
-     
+
 var build_tasks = ["build_cblios", "build_listener", "build_viewcompiler", "build_liteserv"]
 
 function runTasks(tasks) {
