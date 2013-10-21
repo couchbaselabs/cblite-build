@@ -5,9 +5,9 @@ var IOSRepo = "/Users/couchbase/buildbox/couchbase-lite-ios/";
 var CMD_ARGS = process.argv.slice(2);
 switch (CMD_ARGS[0])
     {
-    case '--iosrepo': IOSRepo=CMD_ARGS[1]);
+    case '--iosrepo': IOSRepo=CMD_ARGS[1];
                       break;
-    case '-i':        IOSRepo=CMD_ARGS[1]);
+    case '-i':        IOSRepo=CMD_ARGS[1];
                       break;
     default:          console.log('use:  node buildios.js  --iosrepo .../path/repo/cloned/to');
                       return false;
