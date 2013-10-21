@@ -1,9 +1,17 @@
 var builder = require("./builder");
 
-var stdio   = require('stdio');
 var IOSRepo = "/Users/couchbase/buildbox/couchbase-lite-ios/";
-var ops     = stdio.getopt( {'iosrepo': {key: 'r', args: 1, mandatory: false, description: "couchbase-lite-ios rep directory"}} );
 
+var CMD_ARGS = process.argv.slice(2);
+switch (CMD_ARGS[0])
+    {
+    case '--iosrepo': IOSRepo=CMD_ARGS[1]);
+                      break;
+    case '-i':        IOSRepo=CMD_ARGS[1]);
+                      break;
+    default:          console.log('use:  node buildios.js  --iosrepo .../path/repo/cloned/to');
+                      return false;
+    }
 if (ops.iosrepo) { IOSRepo = ops.iosrepo; } 
      
 var build_tasks = ["build_cblios", "build_listener", "build_viewcompiler", "build_liteserv"]
