@@ -25,6 +25,8 @@ function runStuff(test, cmd, cb) {
         }
         cb(status)
     })
+    proc.stdout.pipe(process.stdout)
+    proc.stderr.pipe(process.stderr)
 }
 
 module.exports.build_gateway = function(path, cb){
